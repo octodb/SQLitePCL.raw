@@ -1,1 +1,1 @@
-dotnet pack -c Release SQLitePCLRawProvider.static.csproj
+dotnet pack -c Release SQLitePCLRawProvider.OctoDB.csproj
