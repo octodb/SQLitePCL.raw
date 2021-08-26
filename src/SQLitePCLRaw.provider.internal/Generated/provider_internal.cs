@@ -31,7 +31,7 @@ namespace SQLitePCL
 	using System.Reflection;
 
 	[Preserve(AllMembers = true)]
-    public sealed class SQLite3Provider_internal : ISQLite3Provider
+    public sealed class SQLite3Provider_static : ISQLite3Provider
     {
 		const CallingConvention CALLING_CONVENTION = CallingConvention.Cdecl;
 
@@ -221,7 +221,7 @@ namespace SQLitePCL
         {
             fixed (byte* p = k)
             {
-                return NativeMethods.sqlite3_key(db, p, k.Length);
+                return 1;  //NativeMethods.sqlite3_key(db, p, k.Length);
             }
         }
 
@@ -229,7 +229,7 @@ namespace SQLitePCL
         {
             fixed (byte* p = k, p_name = name)
             {
-                return NativeMethods.sqlite3_key_v2(db, p_name, p, k.Length);
+                return 1;  //NativeMethods.sqlite3_key_v2(db, p_name, p, k.Length);
             }
         }
 
@@ -237,7 +237,7 @@ namespace SQLitePCL
         {
             fixed (byte* p = k)
             {
-                return NativeMethods.sqlite3_rekey(db, p, k.Length);
+                return 1;  //NativeMethods.sqlite3_rekey(db, p, k.Length);
             }
         }
 
@@ -245,7 +245,7 @@ namespace SQLitePCL
         {
             fixed (byte* p = k, p_name = name)
             {
-                return NativeMethods.sqlite3_rekey_v2(db, p_name, p, k.Length);
+                return 1;  //NativeMethods.sqlite3_rekey_v2(db, p_name, p, k.Length);
             }
         }
 
@@ -1652,17 +1652,17 @@ namespace SQLitePCL
 		[DllImport(SQLITE_DLL, ExactSpelling=true, CallingConvention = CALLING_CONVENTION)]
 		public static extern unsafe IntPtr sqlite3_aggregate_context(IntPtr context, int nBytes);
 
-		[DllImport(SQLITE_DLL, ExactSpelling=true, CallingConvention = CALLING_CONVENTION)]
-		public static extern unsafe int sqlite3_key(sqlite3 db, byte* key, int keylen);
+		//[DllImport(SQLITE_DLL, ExactSpelling=true, CallingConvention = CALLING_CONVENTION)]
+		//public static extern unsafe int sqlite3_key(sqlite3 db, byte* key, int keylen);
 
-		[DllImport(SQLITE_DLL, ExactSpelling=true, CallingConvention = CALLING_CONVENTION)]
-		public static extern unsafe int sqlite3_key_v2(sqlite3 db, byte* dbname, byte* key, int keylen);
+		//[DllImport(SQLITE_DLL, ExactSpelling=true, CallingConvention = CALLING_CONVENTION)]
+		//public static extern unsafe int sqlite3_key_v2(sqlite3 db, byte* dbname, byte* key, int keylen);
 
-		[DllImport(SQLITE_DLL, ExactSpelling=true, CallingConvention = CALLING_CONVENTION)]
-		public static extern unsafe int sqlite3_rekey(sqlite3 db, byte* key, int keylen);
+		//[DllImport(SQLITE_DLL, ExactSpelling=true, CallingConvention = CALLING_CONVENTION)]
+		//public static extern unsafe int sqlite3_rekey(sqlite3 db, byte* key, int keylen);
 
-		[DllImport(SQLITE_DLL, ExactSpelling=true, CallingConvention = CALLING_CONVENTION)]
-		public static extern unsafe int sqlite3_rekey_v2(sqlite3 db, byte* dbname, byte* key, int keylen);
+		//[DllImport(SQLITE_DLL, ExactSpelling=true, CallingConvention = CALLING_CONVENTION)]
+		//public static extern unsafe int sqlite3_rekey_v2(sqlite3 db, byte* dbname, byte* key, int keylen);
 
 		// Since sqlite3_config() takes a variable argument list, we have to overload declarations
 		// for all possible calls that we want to use.
