@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <LangVersion>7.3</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\sn\SQLitePCLRaw.provider.OctoDB.snk</AssemblyOriginatorKeyFile>
+    <PackageDescription>SQLitePCL.raw is a Portable Class Library (PCL) for low-level (raw) access to SQLite.  Packages named 'SQLitePCLRaw.provider.*' (like this one) are 'plugins' that allow SQLitePCLRaw.core to access the native SQLite library.  This is the provider for OctoDB, using DllImport of 'octodb'.</PackageDescription>
+  </PropertyGroup>
+
+<!--
+<Target Name="autogen" BeforeTargets="BeforeBuild">
+<Exec WorkingDirectory="$(ProjectDir)" Command="t4 -o gen_provider_cdecl.cs -p:CONV=Cdecl provider.tt"/>
+<Exec WorkingDirectory="$(ProjectDir)" Command="t4 -o gen_provider_stdcall.cs -p:CONV=StdCall provider.tt"/>
+</Target>
+-->
+
+<ItemGroup>
+	<!-- ProjectReference Include="..\SQLitePCLRaw.core\SQLitePCLRaw.core.csproj" / -->
+  <PackageReference Include="SQLitePCLRaw.core" Version="2.0.4" />
+</ItemGroup>
+
+<ItemGroup>
+    <Compile Include="Generated\provider_OctoDB.cs" />
+</ItemGroup>
+
+</Project>
