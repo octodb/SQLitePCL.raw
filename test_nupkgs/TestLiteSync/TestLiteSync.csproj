@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>TestLiteSync</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Ugly extension methods for raw API (includes core dependency) -->
+    <ProjectReference Include="..\..\src\SQLitePCLRaw.ugly\SQLitePCLRaw.ugly.csproj" />
+
+    <!-- LiteSync provider package from local nupkgs -->
+    <PackageReference Include="SQLitePCLRawProvider.LiteSync" Version="3.0.2" />
+
+    <!-- Microsoft.Data.Sqlite.Core allows custom SQLite providers -->
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="9.0.9" />
+  </ItemGroup>
+
+</Project>

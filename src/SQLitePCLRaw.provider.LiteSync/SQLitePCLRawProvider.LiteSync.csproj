@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;$(tfm_net);$(tfm_windows)</TargetFrameworks>
+    <LangVersion>$(ProviderLangVersion)</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <SignAssembly>false</SignAssembly>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageDescription>SQLitePCL.raw is a Portable Class Library (PCL) for low-level (raw) access to SQLite.  Packages named 'SQLitePCLRaw.provider.*' (like this one) are 'plugins' that allow SQLitePCLRaw.core to access the native SQLite library.  This is the provider for LiteSync, using DllImport of 'litesync'.</PackageDescription>
+    <PackageId>SQLitePCLRawProvider.LiteSync</PackageId>
+  </PropertyGroup>
+
+<ItemGroup>
+	<ProjectReference Include="..\SQLitePCLRaw.core\SQLitePCLRaw.core.csproj" />
+</ItemGroup>
+
+<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <Compile Include="Generated\provider_litesync_prenet5_win.cs" />
+</ItemGroup>
+
+<ItemGroup Condition=" '$(TargetFramework)' == '$(tfm_net)' ">
+    <Compile Include="Generated\provider_litesync_funcptrs_notwin.cs" />
+</ItemGroup>
+
+<ItemGroup Condition=" '$(TargetFramework)' == '$(tfm_windows)' ">
+    <Compile Include="Generated\provider_litesync_funcptrs_win.cs" />
+</ItemGroup>
+
+</Project>
